@@ -1,0 +1,8 @@
+- [x] Fixed all import/export issues in ComponentDemoScreen.tsx (Card subcomponents, default export)
+- [x] Fixed all type errors for toast and dialog types in ComponentDemoScreen.tsx
+- [x] Web build should now work without 'type is invalid' or type errors 
+- [x] Fixed all import path and syntax errors in tab screens (including SearchBar and salaries page)
+- [x] Updated Expo config for web dark mode (colorScheme: 'class')
+- [x] Fixed favicon path to use an existing image (adaptive-icon.png)
+- [x] Cleared caches and restarted dev server
+- [x] Web app now loads successfully and all main tabs are accessible 

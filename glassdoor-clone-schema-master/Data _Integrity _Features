@@ -1,0 +1,7 @@
+ Constraint                       | Description                                           
+
+  "NOT NULL"                      | Ensures required fields are always present            
+  "CHECK"                         | Validates logical rules (e.g., dates, allowed values) 
+  "FOREIGN KEY ON DELETE CASCADE" | Cleans up all related records when a user is deleted  
+  "DEFAULT CURRENT_TIMESTAMP"     | Timestamps records automatically                      
+  "UUID PRIMARY KEYS"             | Globally unique IDs using `gen_random_uuid()`         

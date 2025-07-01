@@ -1,0 +1,48 @@
+Role-Based Access Control (RBAC) Policy for JobSeek API
+
+
+
+	Roles & Permissions
+
+Role				Description						Permissions Summary
+
+Admin			Full system access			Can create/update/delete all resources and users
+User			Registered user				Can view & edit own profile, apply for jobs, submit reviews/salaries/interviews, and view public data
+Guest			Unauthenticated visitor			Can access public endpoints like job listings, companies, register, and login
+	
+	
+	
+	Endpoint Access by Role
+
+| Endpoint                        | HTTP Method    | Admin | User         | Guest        |
+| `/auth/register`                | POST           | ✓     | ✓            | ✓            |
+| `/auth/login`                   | POST           | ✓     | ✓            | ✓            |
+| `/auth/ping`                    | GET            | ✓     | ✓            | ✓            |
+| `/api/users`                    | GET            | ✓     | ✗            | ✗            |
+| `/api/users/{id}`               | GET/PUT/DELETE | ✓     | Own\*        | ✗            |
+| `/api/jobs`                     | GET/POST       | ✓     | ✓            | ✓ (GET only) |
+| `/api/jobs/company/{companyId}` | GET            | ✓     | ✓            | ✓            |
+| `/api/applications`             | GET/POST       | ✓     | Own\*        | ✗            |
+| `/api/interviews`               | GET/POST       | ✓     | Own\*        | ✗            |
+| `/api/reviews`                  | GET/POST       | ✓     | Own\*        | ✗            |
+| `/api/salaries`                 | GET/POST       | ✓     | Own\*        | ✗            |
+| `/api/companies`                | GET/POST       | ✓     | ✓ (GET only) | ✓ (GET only) |
+
+
+
+
+
+“Own” means the user can access/modify only their own data, not others'.
+
+
+Notes:
+
+    All sensitive endpoints require authentication via JWT.
+
+    Role checks are enforced using Spring Security annotations like @PreAuthorize.
+
+    Admins can override restrictions and manage all users and data.
+
+    Users cannot view or modify other users’ private data.
+
+    Guests are limited to public, read-only endpoints and authentication.
